@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.activity.MainActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/center"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <br.com.jv.lembreteponto.view.component.ClockView
+            android:id="@+id/view_entrada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <br.com.jv.lembreteponto.view.component.ClockView
+            android:id="@+id/view_almoco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/center"
+            app:layout_constraintTop_toTopOf="@+id/view_entrada" />
+
+        <br.com.jv.lembreteponto.view.component.ClockView
+            android:id="@+id/view_retorno_almoco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_entrada" />
+
+        <br.com.jv.lembreteponto.view.component.ClockView
+            android:id="@+id/view_saida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/center"
+            app:layout_constraintTop_toBottomOf="@+id/view_almoco" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_clock"
+            style="@style/ButtomClickable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:background="@color/color_primary"
+            android:text="@string/clock"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_saida" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_clear"
+            style="@style/ButtomClickable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/yellow"
+            android:text="@string/clear"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/btn_clock"
+            app:layout_constraintStart_toStartOf="@+id/btn_clock"
+            app:layout_constraintTop_toBottomOf="@+id/btn_clock" />
+
+        <br.com.jv.lembreteponto.view.component.ChangePickerTimeView
+            android:id="@+id/timePicker"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="10dp"
+            tools:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

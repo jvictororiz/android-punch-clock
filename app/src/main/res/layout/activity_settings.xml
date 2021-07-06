@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp"
+        tools:context=".view.activity.SettingsActivity">
+
+        <TextView
+            android:id="@+id/label_general"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/general"
+            android:textColor="@color/color_primary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/line_top"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/gray_400"
+            app:layout_constraintTop_toBottomOf="@+id/label_general" />
+
+        <TextView
+            android:id="@+id/label_hour_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/hour_total"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line_top" />
+
+        <TextView
+            android:id="@+id/description_hour_total"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/description_hour_total"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/edt_hour_total"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_hour_total" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edt_hour_total"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/shape_line"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/description_hour_total"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/label_hour_total"
+            tools:text="6" />
+
+
+        <View
+            android:id="@+id/line_top_total_hours"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/gray_400"
+            app:layout_constraintTop_toBottomOf="@+id/description_hour_total" />
+
+        <TextView
+            android:id="@+id/label_hour_almoco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/hour_almoco"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line_top_total_hours" />
+
+        <TextView
+            android:id="@+id/description_hour_almoco"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/description_hour_almoco"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/edt_hour_almoco"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_hour_almoco" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edt_hour_almoco"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/shape_line"
+            android:gravity="center"
+            android:maxLength="3"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/description_hour_almoco"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/label_hour_almoco"
+            tools:text="120" />
+
+        <View
+            android:id="@+id/line_bottom_hour"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/gray_400"
+            app:layout_constraintTop_toBottomOf="@+id/description_hour_almoco" />
+
+        <TextView
+            android:id="@+id/label_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/open_url"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line_bottom_hour" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_package"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="@string/fake_packoge"
+            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/gray_400"
+            app:boxStrokeWidth="1dp"
+            app:endIconDrawable="@drawable/ic_close"
+            app:endIconMode="clear_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_url">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_package"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:inputType="text"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnTutorial"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/onde_encontro_o_pacote"
+            android:textAllCaps="false"
+            android:textColor="@color/color_primary"
+            app:layout_constraintEnd_toEndOf="@+id/input_package"
+            app:layout_constraintStart_toStartOf="@+id/input_package"
+            app:layout_constraintTop_toBottomOf="@+id/input_package" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_save"
+            style="@style/ButtomClickable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:background="@color/color_primary"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

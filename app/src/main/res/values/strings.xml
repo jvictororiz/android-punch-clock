@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Hora do ponto</string>
+    <string name="clock">Bater ponto</string>
+    <string name="clear">Limpar</string>
+    <string name="error_default">Foi encontrado um erro</string>
+    <string name="clear_time">--:--</string>
+    <string name="message_entrada">Horário Entrada</string>
+    <string name="message_almoco">Horário Almoço</string>
+    <string name="message_notification_almoco">Está na hora de bater o ponto do almoco: %1s</string>
+    <string name="message_notification_saida">Está na hora de bater o ponto da saída: %1s</string>
+    <string name="message_retorno_almoco">Horário Retorno</string>
+    <string name="message_saida">Horário Saída</string>
+    <string name="general">Geral</string>
+    <string name="hour_almoco">Horário de almoço</string>
+    <string name="description_hour_almoco">Quantos minutos você fica no almoço, não é obrigatório seguir esse horário</string>
+    <string name="open_url">Abrir aplicativo ao disparar alarme</string>
+    <string name="fake_packoge">Digite o pacote da aplicação</string>
+    <string name="save">Salvar alterações</string>
+    <string name="hour_total">Horas de trabalho</string>
+    <string name="description_hour_total">Total em horas do seu expediente, 8 caso seja 8 horas por exemplo</string>
+    <string name="ok">Concluir</string>
+    <string name="cancel">Cancelar</string>
+    <string name="title">Hora do ponto</string>
+    <string name="content">Precisa bater o ponto</string>
+    <string name="channel_notification">channel_notification</string>
+    <string name="notification_title">Hora do ponto</string>
+    <string name="last_time_to_clock">Tempo restante para bater o próximo ponto:<font fgcolor='#000000'>\n%1s</font>  </string>
+    <string name="lost_last_time_to_clock">Tempo passado da hora de bater o ponto:<font fgcolor='#FFF44336'>\n%1s</font></string>
+
+    <string name="status_stop"><font fgcolor='#FF8E8E93'>Stopped</font></string>
+    <string name="onde_encontro_o_pacote">Onde encontro o pacote?</string> <!--gray-->
+
+</resources>

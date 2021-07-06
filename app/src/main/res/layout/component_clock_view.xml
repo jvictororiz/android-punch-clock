@@ -1,0 +1,38 @@
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="120dp"
+        android:id="@+id/ll_body_view"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        style="@style/ButtomClickable"
+        android:background="@drawable/shape_round"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Horário entrada" />
+
+        <TextView
+            android:id="@+id/tv_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/clear_time"
+            android:textStyle="bold"
+            android:textColor="@color/color_primary"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_label"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label"
+            tools:text="09:00H" />
+    </LinearLayout>
+</layout>
