@@ -37,7 +37,7 @@ class ClockViewModel(
     val goToScreen = MutableLiveData<String>()
     val clearClock = MutableLiveData<ClockType>()
 
-    
+
     fun init() {
         viewModelScope.launch(Dispatchers.IO) {
             ClockType.getAllTypes().forEach { type ->
