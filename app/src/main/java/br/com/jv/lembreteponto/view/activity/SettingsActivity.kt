@@ -8,7 +8,6 @@ import br.com.jv.lembreteponto.databinding.ActivitySettingsBinding
 import br.com.jv.lembreteponto.viewModel.SettingsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class SettingsActivity : AppCompatActivity() {
     private val viewModel by viewModel<SettingsViewModel>()
     private val binding by lazy {
