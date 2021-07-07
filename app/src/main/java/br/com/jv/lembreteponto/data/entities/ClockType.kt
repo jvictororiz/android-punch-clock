@@ -39,6 +39,5 @@ sealed class ClockType {
         }
 
         fun getAllTypes(): List<ClockType> = listOf(Entrada, Almoco, RetornoAlmoco, Saida)
-
     }
 }
