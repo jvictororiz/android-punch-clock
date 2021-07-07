@@ -32,13 +32,15 @@ class ClockViewModel(
     val clockUpdateView = MutableLiveData<UpdateTime>()
     val clockUpdateHintViewAlmoco = MutableLiveData<String>()
     val clockUpdateHintViewSaida = MutableLiveData<String>()
-    val scheduleNotification = MutableLiveData<ScheduleNotification>()
-    val cancelScheduleNotification = MutableLiveData<Int>()
-    val goToScreen = MutableLiveData<String>()
     val clearClock = MutableLiveData<ClockType>()
+    val scheduleNotificationEvent = MutableLiveData<ScheduleNotification>()
+    val hideAlertEvent = MutableLiveData<Any>()
+    val cancelScheduleNotificationEvent = MutableLiveData<Int>()
+    val goToScreenEvent = MutableLiveData<String>()
 
 
     fun init() {
+        hideAlertEvent.value = null
         viewModelScope.launch(Dispatchers.IO) {
             ClockType.getAllTypes().forEach { type ->
                 viewModelScope.launch(Dispatchers.Main) {
@@ -51,13 +53,14 @@ class ClockViewModel(
                         is ClockType.Almoco -> {
                             preferences.get(KEY_ALMOCO)?.let {
                                 clockUpdateView.value = (UpdateTime(it, type))
-                                calculateAndShowPreviewHour()
+                                showClockUpdateHintViewAlmoco()
+                                showclockUpdateHintViewSaida()
                             }
                         }
                         is ClockType.RetornoAlmoco -> {
                             preferences.get(KEY_RETORNO_ALMOCO)?.let {
                                 clockUpdateView.postValue(UpdateTime(it, type))
-                                calculateAndShowPreviewHour()
+                                showclockUpdateHintViewSaida()
                             }
                         }
                         is ClockType.Saida -> {
@@ -131,30 +134,30 @@ class ClockViewModel(
 
     private fun cancelAlarmsSchedules() {
         clockUpdateHintViewAlmoco.value?.let {
-            cancelScheduleNotification.value = it.convertTimeInId()
+            cancelScheduleNotificationEvent.value = it.convertTimeInId()
         }
         clockUpdateHintViewSaida.value?.let {
-            cancelScheduleNotification.value = it.convertTimeInId()
+            cancelScheduleNotificationEvent.value = it.convertTimeInId()
         }
     }
 
-    private fun scheduleAllReturns() {
+    private fun scheduleAllNotification() {
         clockUpdateHintViewSaida.value?.let {
-            scheduleReturns(it, ClockType.Saida)
+            scheduleNotifications(it, ClockType.Saida)
         }
         clockUpdateHintViewAlmoco.value?.let {
-            scheduleReturns(it, ClockType.Almoco)
+            scheduleNotifications(it, ClockType.Almoco)
         }
     }
 
-    private fun scheduleReturns(timeToUpdate: String, clockType: ClockType) {
+    private fun scheduleNotifications(timeToUpdate: String, clockType: ClockType) {
         if (useCase.isAfter(timeToUpdate.toDate())) {
             return
         }
         val title = useCase.getTitleAlert()
         val description = useCase.getDescriptionMessageAlert(clockType, timeToUpdate)
 
-        scheduleNotification.value = ScheduleNotification(
+        scheduleNotificationEvent.value = ScheduleNotification(
             title = title,
             description = description,
             id = timeToUpdate.convertTimeInId(),
@@ -165,22 +168,34 @@ class ClockViewModel(
     private fun calculateAndShowPreviewHour() {
         cancelAlarmsSchedules()
         val currentClockType = getCurrentClockType()
-        if (currentClockType is ClockType.Almoco && useCase.verifyIfCanCalculatePreviewHoursAlmoco()) {
+        if (currentClockType is ClockType.Almoco) {
             clockUpdateHintViewAlmoco.value = useCase.calculatePreviewAlmoco()
+            scheduleAllNotification()
+
+        } else if (currentClockType is ClockType.RetornoAlmoco) {
+            showclockUpdateHintViewSaida()
+            scheduleAllNotification()
+        }
+    }
+
+    private fun showClockUpdateHintViewAlmoco() {
+        if (useCase.verifyIfCanCalculatePreviewHoursAlmoco()) {
             val timeMinutes = useCase.previewTimeRetornoAlmocoWithSettings()
-            scheduleAllReturns()
             clockUpdateHintViewSaida.value = useCase.calculatePreviewSaida(timeMinutes)
-        } else if (currentClockType is ClockType.RetornoAlmoco && useCase.verifyIfCanCalculatePreviewHoursRetornoAlmoco()) {
+        }
+    }
+
+    private fun showclockUpdateHintViewSaida() {
+        if (useCase.verifyIfCanCalculatePreviewHoursRetornoAlmoco()) {
             val timeRetornoAlmoco = preferences.get(KEY_RETORNO_ALMOCO)?.toDate()
             clockUpdateHintViewSaida.value = useCase.calculatePreviewSaida(timeRetornoAlmoco)
-            scheduleAllReturns()
         }
     }
 
     private fun goToThirdAppSave() {
         waitTime(TIME_TO_START_SCREEN) {
             preferences.get(KEY_SETTINGS_PACKAGE_APP)?.let {
-                goToScreen.value = it
+                goToScreenEvent.value = it
             }
         }
     }

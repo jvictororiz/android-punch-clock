@@ -10,6 +10,7 @@ import br.com.jv.lembreteponto.data.entities.ClockType
 import br.com.jv.lembreteponto.databinding.ActivityMainBinding
 import br.com.jv.lembreteponto.ext.cancelNotification
 import br.com.jv.lembreteponto.ext.scheduleNotification
+import br.com.jv.lembreteponto.service.AlarmService
 import br.com.jv.lembreteponto.viewModel.ClockViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -63,17 +64,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.goToScreen.observe(this, {
+        viewModel.goToScreenEvent.observe(this, {
             packageManager.getLaunchIntentForPackage(it)?.let { intent ->
                 startActivity(intent)
             }
         })
 
-        viewModel.scheduleNotification.observe(this) {
+        viewModel.hideAlertEvent.observe(this) {
+            stopService(Intent(this, AlarmService::class.java))
+        }
+
+        viewModel.scheduleNotificationEvent.observe(this) {
             scheduleNotification(this, it)
         }
 
-        viewModel.cancelScheduleNotification.observe(this) {
+        viewModel.cancelScheduleNotificationEvent.observe(this) {
             cancelNotification(this, it)
         }
     }
