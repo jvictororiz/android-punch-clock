@@ -3,6 +3,10 @@
     package="br.com.jv.lembreteponto">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
 
     <application
         android:name=".BaseApplication"
@@ -21,8 +25,8 @@
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name=".service.NotificationReceiver" />
+        <receiver android:name=".service.NotificationReceiver" />
+        <service android:name=".service.AlarmService" />
     </application>
 
 </manifest>
