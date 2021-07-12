@@ -30,7 +30,7 @@ sealed class ClockType {
             saida: String?
         ): ClockType {
             return when {
-                entrada != null && almoco == null -> Almoco
+                entrada != null && almoco == null -> Entrada
                 almoco != null && retornoAlmoco == null -> Almoco
                 retornoAlmoco != null && saida == null -> RetornoAlmoco
                 saida != null -> Saida
