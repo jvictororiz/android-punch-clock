@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         bindViews()
-        viewModel.init()
         setupListeners()
 
         viewModel.clockUpdateView.observe(this) {

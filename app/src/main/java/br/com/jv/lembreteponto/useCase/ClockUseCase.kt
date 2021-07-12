@@ -22,6 +22,7 @@ class ClockUseCase(
     fun verifyIfCanCalculatePreviewHoursRetornoAlmoco(): Boolean {
         return preferences.get(KEY_ALMOCO, null) != null
                 && preferences.get(Preferences.KEY_ENTRADA) != null
+                && preferences.get(Preferences.KEY_RETORNO_ALMOCO) != null
     }
 
     fun calculatePreviewAlmoco(): String {
@@ -30,6 +31,13 @@ class ClockUseCase(
         val hourClockAlmoco = preferences.get(KEY_ALMOCO, null)!!.toDate()
         val nextHourRetornoAlmoco = hourClockAlmoco.incrementMinutes(timeAlmoco)
         return nextHourRetornoAlmoco.dateToString()
+    }
+
+    fun previewTimeRetornoAlmocoWithSettings(): Date {
+        val intervalAlmoco =
+            (preferences.get(KEY_SETTINGS_HOUR_ALMOCO))?.toInt() ?: INTERVAL_ALMOCO_DEFAULT
+        val timeAlmoco = preferences.get(KEY_ALMOCO)?.toDate()
+        return timeAlmoco?.incrementMinutes(intervalAlmoco)!!
     }
 
     fun calculatePreviewSaida(timeRetornoAlmoco: Date?): String {
@@ -46,14 +54,6 @@ class ClockUseCase(
             add(Calendar.MINUTE, result)
         }.time
         return resultDate.dateToString()
-    }
-
-    fun previewTimeRetornoAlmocoWithSettings(): Date {
-        val intervalAlmoco =
-            (preferences.get(KEY_SETTINGS_HOUR_ALMOCO))?.toInt() ?: INTERVAL_ALMOCO_DEFAULT
-        val timeAlmoco = preferences.get(KEY_ALMOCO)?.toDate()
-        return timeAlmoco?.incrementMinutes(intervalAlmoco)!!
-
     }
 
     fun isAfter(date: Date): Boolean {

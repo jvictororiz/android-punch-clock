@@ -38,6 +38,10 @@ class ClockViewModel(
     val cancelScheduleNotificationEvent = MutableLiveData<Int>()
     val goToScreenEvent = MutableLiveData<String>()
 
+    init {
+        init()
+    }
+
 
     fun init() {
         hideAlertEvent.value = null
@@ -180,6 +184,7 @@ class ClockViewModel(
 
     private fun showClockUpdateHintViewAlmoco() {
         if (useCase.verifyIfCanCalculatePreviewHoursAlmoco()) {
+            clockUpdateHintViewAlmoco.value = useCase.calculatePreviewAlmoco()
             val timeMinutes = useCase.previewTimeRetornoAlmocoWithSettings()
             clockUpdateHintViewSaida.value = useCase.calculatePreviewSaida(timeMinutes)
         }
