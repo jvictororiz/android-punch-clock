@@ -40,7 +40,6 @@ class ClockViewModel(
 
 
     fun init() {
-        hideAlertEvent.value = null
         viewModelScope.launch(Dispatchers.IO) {
             ClockType.getAllTypes().forEach { type ->
                 viewModelScope.launch(Dispatchers.Main) {
@@ -59,19 +58,22 @@ class ClockViewModel(
                         }
                         is ClockType.RetornoAlmoco -> {
                             preferences.get(KEY_RETORNO_ALMOCO)?.let {
-                                clockUpdateView.postValue(UpdateTime(it, type))
+                                clockUpdateView.value = (UpdateTime(it, type))
                                 showclockUpdateHintViewSaida()
                             }
                         }
                         is ClockType.Saida -> {
                             preferences.get(KEY_SAIDA)?.let {
-                                clockUpdateView.postValue(UpdateTime(it, type))
+                                clockUpdateView.value = (UpdateTime(it, type))
                             }
                         }
                         else -> {
                         }
                     }
                 }
+            }
+            viewModelScope.launch(Dispatchers.Main) {
+                hideAlertEvent.value = null
             }
         }
     }
